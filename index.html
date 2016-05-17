@@ -11,6 +11,7 @@
     <h1> Hello Keith's World </h1>
 
     <div id='map' style='width: 100%; height: 600px;'></div>
+    <button onclick="fly()" id="fly">Fly</button>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoia2VpdGhoZW5yeSIsImEiOiJjaWpleHg0OXcwMDBxdTRtNXh2bzJ1M2RuIn0.pRRgOiRIeWX5MeHFz8Be3g';
 
@@ -31,8 +32,7 @@
                       "type": "Feature",
                       "geometry": {
                           "type": "Point",
-                          "coordinates": [-77.038686, 38.905289]
-
+                          "coordinates": [-77.038832, 38.905287]
                       },
                       "properties": {
                           "title": "Socrata",
@@ -101,6 +101,7 @@
               }
           });
 
+
           map.addLayer({
               "id": "markers",
               "type": "symbol",
@@ -120,6 +121,7 @@
 
     map.on('click', function (e) {
       var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
+      console.log(features[0].geometry.coordinates)
 
       if (!features.length) {
           return;
@@ -133,7 +135,35 @@
           .setLngLat(feature.geometry.coordinates)
           .setHTML(feature.properties.description)
           .addTo(map);
+
+      var fly = function(){
+        console.log("I'm Flyingggg")
+        map.flyTo({
+          center: feature.geometry.coordinates,
+          zoom: 16.5,
+          speed: 0.5
+        })
+      }
+
+      fly()
     });
+
+    click = []
+    var fly = function(){
+      click++
+      console.log(click)
+      if(click === 1){
+        map.flyTo({
+          center: [-74.777883,39.854799],
+          zoom: 20
+        })
+      } else if (click ===2) {
+        map.flyTo({
+          center: [-74.777883,39.854799],
+          zoom: 20
+        })
+      }
+    }
 
     </script>
 
