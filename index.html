@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Keith's Map </title>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+</head>
+  <body>
+    <h1> Hello Keith's World </h1>
+
+    <div id='map' style='width: 800px; height: 600px;'></div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2VpdGhoZW5yeSIsImEiOiJjaWpleHg0OXcwMDBxdTRtNXh2bzJ1M2RuIn0.pRRgOiRIeWX5MeHFz8Be3g';
+//     var map = new mapboxgl.Map({
+//         // container id
+//         container: 'map',
+//         //stylesheet location
+//         style: 'mapbox://styles/mapbox/streets-v8',
+//         // starting position
+//         center: [-122.5076404, 37.7576793],
+//         zoom: 11
+//       });
+//
+//
+// map.on('load', function () {
+//     map.addSource('RPD_Parks', {
+//         type: 'vector',
+//         url: 'mapbox://mapbox.3o7ubwm8'
+//     });
+//     map.addLayer({
+//         id: 'rpd_parks',
+//         type: 'fill',
+//         source: 'RPD_Parks',
+//         'source-layer': 'RPD_Parks',
+//         layout: {
+//             visibility: 'visible'
+//         },
+//         paint: {
+//             'fill-color': 'rgba(61,153,80,0.55)'
+//         }
+//     });
+// });
+
+
+// var map = new mapboxgl.Map({
+//     // container id
+//     container: 'map',
+//     //stylesheet location
+//     style: 'mapbox://styles/mapbox/streets-v8',
+//     // starting position
+//     center: [-77.0323, 38.9131],
+//     zoom: 11
+//   });
+//
+// map.on('load', function(){
+//   map.addSource("geojson-marker", {
+//     "type": "geojson",
+//     "data": {
+//       "type": "Feature",
+//       "geometry": {
+//         "type": "Point",
+//         "coordinates": [-77.0323, 38.9131]
+//       },
+//       "properties": {
+//         "title": "Mapbox DC",
+//         "marker-symbol": "monument"
+//       }
+//     }
+//   });
+//   map.addLayer({
+//     "id": "markers",
+//     "type": "symbol",
+//     "source": "markers"
+//   })
+// })
+
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v8',
+    center: [-75.237519, 40.000987],
+    zoom: 6
+});
+
+map.on('load', function () {
+    map.addSource("markers", {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-77.038686, 38.905289]
+
+                },
+                "properties": {
+                    "title": "Socrata",
+                    "marker-symbol": "marker",
+                    "marker-color": "#3bb2d0"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-77.034117, 38.904839]
+                },
+                "properties": {
+                    "title": "General Assembly",
+                    "marker-symbol": "marker"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-73.985126, 40.753794]
+
+                },
+                "properties": {
+                    "title": "Yahoo",
+                    "marker-symbol": "marker"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-73.596210, 40.715599]
+                },
+                "properties": {
+                    // "title": "Hofstra",
+                    "marker-symbol": "marker"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-73.986601, 40.754421]
+
+                },
+                "properties": {
+                    "title": "MediaMath",
+                    "marker-symbol": "marker"
+
+                }
+            }]
+        }
+    });
+
+    map.addLayer({
+        "id": "markers",
+        "type": "symbol",
+        "source": "markers",
+        "layout": {
+            "icon-image": "{marker-symbol}-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+});
+
+
+    </script>
+
+  </body>
+</html>
