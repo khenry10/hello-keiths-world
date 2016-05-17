@@ -10,158 +10,130 @@
   <body>
     <h1> Hello Keith's World </h1>
 
-    <div id='map' style='width: 800px; height: 600px;'></div>
+    <div id='map' style='width: 100%; height: 600px;'></div>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoia2VpdGhoZW5yeSIsImEiOiJjaWpleHg0OXcwMDBxdTRtNXh2bzJ1M2RuIn0.pRRgOiRIeWX5MeHFz8Be3g';
-//     var map = new mapboxgl.Map({
-//         // container id
-//         container: 'map',
-//         //stylesheet location
-//         style: 'mapbox://styles/mapbox/streets-v8',
-//         // starting position
-//         center: [-122.5076404, 37.7576793],
-//         zoom: 11
-//       });
-//
-//
-// map.on('load', function () {
-//     map.addSource('RPD_Parks', {
-//         type: 'vector',
-//         url: 'mapbox://mapbox.3o7ubwm8'
-//     });
-//     map.addLayer({
-//         id: 'rpd_parks',
-//         type: 'fill',
-//         source: 'RPD_Parks',
-//         'source-layer': 'RPD_Parks',
-//         layout: {
-//             visibility: 'visible'
-//         },
-//         paint: {
-//             'fill-color': 'rgba(61,153,80,0.55)'
-//         }
-//     });
-// });
 
+      var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v8',
+          center: [-75.237519, 40.000987],
+          zoom: 6.94
+      });
 
-// var map = new mapboxgl.Map({
-//     // container id
-//     container: 'map',
-//     //stylesheet location
-//     style: 'mapbox://styles/mapbox/streets-v8',
-//     // starting position
-//     center: [-77.0323, 38.9131],
-//     zoom: 11
-//   });
-//
-// map.on('load', function(){
-//   map.addSource("geojson-marker", {
-//     "type": "geojson",
-//     "data": {
-//       "type": "Feature",
-//       "geometry": {
-//         "type": "Point",
-//         "coordinates": [-77.0323, 38.9131]
-//       },
-//       "properties": {
-//         "title": "Mapbox DC",
-//         "marker-symbol": "monument"
-//       }
-//     }
-//   });
-//   map.addLayer({
-//     "id": "markers",
-//     "type": "symbol",
-//     "source": "markers"
-//   })
-// })
+      map.on('load', function () {
+          map.addSource("markers", {
+              "type": "geojson",
 
+              "data": {
+                  "type": "FeatureCollection",
+                  "features": [{
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [-77.038686, 38.905289]
 
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v8',
-    center: [-75.237519, 40.000987],
-    zoom: 6
-});
+                      },
+                      "properties": {
+                          "title": "Socrata",
+                          "description": "<div class=\"marker-title\">Socrata - leader in the open data space, In-Q-Tel funded start-up building a platform to help government and government agencies publish data. </div><p><li> October 2014 - February 2016</p>",
+                          "marker-symbol": "marker"
+                      }
+                  }, {
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [-77.034117, 38.904839]
+                      },
+                      "properties": {
+                          "title": "General Assembly",
+                          "description": "<div class=\"marker-title\">General Assembly's Web Dev Immersive</div><p><li> February 2016 - April 2016  </p>",
+                          "marker-symbol": "marker"
+                      }
+                  }, {
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [-73.985126, 40.753794]
 
-map.on('load', function () {
-    map.addSource("markers", {
-        "type": "geojson",
-        "data": {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [-77.038686, 38.905289]
+                      },
+                      "properties": {
+                          "title": "Yahoo",
+                          "description": "<div class=\"marker-title\">Yahoo Inc.</div><p><li> January 2010 - October 2011</p>",
+                          "marker-symbol": "marker"
+                      }
+                  }, {
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [-74.777883, 39.854799]
+                      },
+                      "properties": {
+                          "title": "Shawnee",
+                          "description": "<div class=\"marker-title\">Shawnee High School</div><p><li> Graduated June 2005 </p>",
+                          "marker-symbol": "marker"
+                      }
+                  }, {
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [-73.596210, 40.715599]
+                      },
+                      "properties": {
+                          "title": "Hofstra",
+                          "description": "<div class=\"marker-title\">Hofstra University</div><p><li> Graduated May 2009 </p>",
+                          "marker-symbol": "marker"
+                      }
+                  }, {
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [-73.986601, 40.754421]
 
-                },
-                "properties": {
-                    "title": "Socrata",
-                    "marker-symbol": "marker",
-                    "marker-color": "#3bb2d0"
-                }
-            }, {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [-77.034117, 38.904839]
-                },
-                "properties": {
-                    "title": "General Assembly",
-                    "marker-symbol": "marker"
-                }
-            }, {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [-73.985126, 40.753794]
+                      },
+                      "properties": {
+                          "title": "MediaMath",
+                          "description": "<div class=\"marker-title\">MediaMath</div><p><li> October 2011 - October 2014</p>",
+                          "marker-symbol": "marker"
 
-                },
-                "properties": {
-                    "title": "Yahoo",
-                    "marker-symbol": "marker"
-                }
-            }, {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [-73.596210, 40.715599]
-                },
-                "properties": {
-                    // "title": "Hofstra",
-                    "marker-symbol": "marker"
-                }
-            }, {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [-73.986601, 40.754421]
+                      }
+                  }]
+              }
+          });
 
-                },
-                "properties": {
-                    "title": "MediaMath",
-                    "marker-symbol": "marker"
+          map.addLayer({
+              "id": "markers",
+              "type": "symbol",
+              "source": "markers",
+              "layout": {
+                  "icon-image": "{marker-symbol}-15",
+                  "text-field": "{title}",
+                  "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                  "text-offset": [0, -1.8],
+                  "text-anchor": "top"
 
-                }
-            }]
-        }
+              }
+          });
+      });
+
+      map.addControl(new  mapboxgl.Navigation())
+
+    map.on('click', function (e) {
+      var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
+
+      if (!features.length) {
+          return;
+      }
+
+      var feature = features[0];
+
+      // Populate the popup and set its coordinates
+      // based on the feature found.
+      var popup = new mapboxgl.Popup()
+          .setLngLat(feature.geometry.coordinates)
+          .setHTML(feature.properties.description)
+          .addTo(map);
     });
-
-    map.addLayer({
-        "id": "markers",
-        "type": "symbol",
-        "source": "markers",
-        "layout": {
-            "icon-image": "{marker-symbol}-15",
-            "text-field": "{title}",
-            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            "text-offset": [0, 0.6],
-            "text-anchor": "top"
-        }
-    });
-});
-
 
     </script>
 
