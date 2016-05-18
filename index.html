@@ -10,7 +10,9 @@
   <body>
     <div class="navigation">
       <h1>Hello Keith's World</h1>
-      <button onclick="zoomOut()">Zoom Out</button>
+      <button onclick="tour()"> Tour </button>
+      <button onclick="eastCoastZoom()">East Coast Zoom </button>
+      <button onclick="usZoom()">US Zoom </button>
     </div>
 
     <div id='map' style='width: 100%; height: 89vh;'></div>
@@ -20,8 +22,8 @@
       var map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v8',
-          center: [-75.237519, 40.000987],
-          zoom: 6.94
+          center: [-99.046506, 37.477170],
+          zoom: 3.8
       });
 
       map.on('load', function () {
@@ -61,7 +63,7 @@
                       },
                       "properties": {
                           "title": "Yahoo",
-                          "description": "<div class=\"marker-title\">Yahoo Inc.</div><p><li> January 2010 - October 2011</p>",
+                          "description": "<div class=\"marker-title\">Yahoo Inc.</div><p><li> January 2010 - October 2011</p><p> After the Fall Harvest ended",
                           "marker-symbol": "marker"
                       }
                   }, {
@@ -71,7 +73,7 @@
                           "coordinates": [-74.777883, 39.854799]
                       },
                       "properties": {
-                          "title": "Shawnee",
+                          "title": "Shawnee HS",
                           "description": "<div class=\"marker-title\">Shawnee High School</div><p><li> Graduated June 2005 </p>",
                           "marker-symbol": "marker"
                       }
@@ -82,11 +84,34 @@
                           "coordinates": [-73.596210, 40.715599]
                       },
                       "properties": {
-                          "title": "Hofstra",
+                          "title": "Hofstra U",
                           "description": "<div class=\"marker-title\">Hofstra University</div><p><li> Graduated May 2009 </p>",
                           "marker-symbol": "marker"
                       }
                   }, {
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [-121.898533, 39.181551]
+
+                      },
+                      "properties": {
+                          "title": "Oak Acre Farms",
+                          "description": "<div class=\"marker-title\"><b>Mapbox</b></div><p><li> Fall 2009 </p><p> With the economy in the toilet, I decided to head West and help out on my buddies farm.</p><p> We did a little bit of everything from cleaning the orachards, picking fruit, boxing fruit on the assembly line, to any other odd jobs that needed to be done.</p><p> On weekends we would drive to San Fran to sell at a local farmers market and enjoy the city.</p>",
+                          "marker-symbol": "marker"
+                          }
+                      },  {
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [-77.032558, 38.913184]
+                      },
+                      "properties": {
+                          "title": "Mapbox",
+                          "description": "<div class=\"marker-title\"><b>Mapbox</b></div><p><li> Spring 2016 Harvest</p><p>  </p><p> </p><p> </p>",
+                          "marker-symbol": "marker"
+                          }
+                      }, {
                       "type": "Feature",
                       "geometry": {
                           "type": "Point",
@@ -99,6 +124,7 @@
                           "marker-symbol": "marker"
 
                       }
+
                   }]
               }
           });
@@ -112,7 +138,7 @@
                   "icon-image": "{marker-symbol}-15",
                   "text-field": "{title}",
                   "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                  "text-offset": [0, -1.8],
+                  "text-offset": [0, -2],
                   "text-anchor": "top"
 
               }
@@ -128,21 +154,23 @@
       }
 
       var feature = features[0];
-      console.log(feature.geometry.coordinates)
+      console.log(feature.geometry.coordinates[0])
 
       // Populate the popup and set its coordinates
       // based on the feature found.
-      var popup = new mapboxgl.Popup()
-          .setLngLat(feature.geometry.coordinates)
-          .setHTML(feature.properties.description)
-          .addTo(map);
+
+        var popup = new mapboxgl.Popup()
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(feature.properties.description)
+        .addTo(map);
+
 
       var fly = function(){
         // 1st conditional is to to see if the market selected is Yahoo.  If yes, bearing is set to 30 to aline nicely with Manhattan's grid system
         if(feature.geometry.coordinates[0] === -73.98536682128906 && feature.geometry.coordinates[1] === 40.75401921961654){
           map.flyTo({
             center: feature.geometry.coordinates,
-            zoom: 16.5,
+            zoom: 15.5,
             speed: 0.4,
             bearing: 30
           })
@@ -158,22 +186,123 @@
         } else {
           map.flyTo({
             center: feature.geometry.coordinates,
-            zoom: 16.5,
+            zoom: 14.5,
             speed: 0.4
           })
       }
     }
     fly()
+
+    var next = function(){
+      console.log(map.markers)
+    }
+
   })
 
 
-    var zoomOut = function(){
+    var eastCoastZoom = function(){
       map.flyTo({
         center: [-75.237519, 40.000987],
         zoom: 6.94,
         bearing: 0
       })
     };
+
+    var usZoom = function(){
+      map.flyTo({
+        center: [-99.046506, 37.477170],
+        zoom: 3.8,
+        bearing: 0
+      })
+    }
+
+    var tour = function(){
+      //to shawnee
+      console.log("to shawnee.....")
+      map.flyTo({
+        center: [-74.777883, 39.854799],
+        zoom: 14.5,
+        speed: 0.4
+      })
+
+      //to hofstra
+      setTimeout(function() {
+        console.log("to hofstra...")
+        map.flyTo({
+          center: [-73.596210, 40.715599],
+          zoom: 16.5,
+          speed: 0.4,
+          bearing: -25
+        })
+    },10550)
+
+    // to cali
+    setTimeout(function() {
+      console.log("to cali.....")
+      map.flyTo({
+        center: [-121.898533, 39.181551],
+        zoom: 16.5,
+        speed: 0.3,
+        bearing: 0
+      })
+  },25000);
+
+//to Yahoo
+  setTimeout(function() {
+    console.log("to yahoo.....")
+    map.flyTo({
+      center: [-73.985126, 40.753794],
+      zoom: 16.5,
+      speed: 0.4,
+      bearing: 30
+    })
+},60000);
+
+// to MediaMath
+setTimeout(function() {
+  console.log("to MediaMath.....")
+  map.flyTo({
+    center: [-73.986601, 40.754421],
+    zoom: 16.5,
+    speed: 0.1,
+    bearing: 30
+  })
+},80000);
+
+//to Socrata
+setTimeout(function() {
+  console.log("to socrata.....")
+  map.flyTo({
+    center: [-77.038832, 38.905287],
+    zoom: 16.5,
+    speed: 0.4,
+    bearing: 0
+  })
+},90000);
+
+//to general Assembly
+setTimeout(function() {
+  console.log("to GA.....")
+  map.flyTo({
+    center: [-77.034117, 38.904839],
+    zoom: 16.5,
+    speed: 0.4,
+    bearing: 0
+  })
+},100000);
+
+//to Mapbox
+setTimeout(function() {
+  console.log("to Mapbox....")
+  map.flyTo({
+    center: [-77.032558, 38.913184],
+    zoom: 16.5,
+    speed: 0.4,
+    bearing: 0
+  })
+},150000);
+    }
+
 
     </script>
 
