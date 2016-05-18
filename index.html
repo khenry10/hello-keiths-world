@@ -4,14 +4,16 @@
   <title> Keith's Map </title>
   <script src='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
-  <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+  <link rel="stylesheet" href="style.css" >
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 </head>
   <body>
-    <h1> Hello Keith's World </h1>
+    <div class="navigation">
+      <h1>Hello Keith's World</h1>
+      <button onclick="zoomOut()">Zoom Out</button>
+    </div>
 
-    <div id='map' style='width: 100%; height: 600px;'></div>
-    <button onclick="fly()" id="fly">Fly</button><button onclick="zoomOut()">Zoom Out</button>
+    <div id='map' style='width: 100%; height: 89vh;'></div>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoia2VpdGhoZW5yeSIsImEiOiJjaWpleHg0OXcwMDBxdTRtNXh2bzJ1M2RuIn0.pRRgOiRIeWX5MeHFz8Be3g';
 

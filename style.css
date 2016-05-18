@@ -1,0 +1,32 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navigation {
+  background-color: rgba(231, 76, 60, 0.91);
+  color: white;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 30%;
+  /*padding-left: 0 auto;*/
+  padding-right: 0 auto;
+  border-bottom: 3px solid #ecf0f1;
+}
+
+.navigation button {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  height: 25px;
+  padding-top: auto;
+  margin-left: 30px;
+}
+
+.mapboxgl-popup-content {
+  border-radius: 10px;
+}
