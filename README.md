@@ -8,9 +8,9 @@ Keith's Hello World is a mapping app to highlight the different places I've atte
 
 ### Technology
 
-I used Mapbox's GL JS API for the mapping components.  The markers are using validated geoJSON and I used the flyto method with zooming and bearing for click-action effects. The site is mostly javascript with some HTML/CSS and is hosted on github pages.
+I used Mapbox's GL JS API for the mapping components.  The markers are using validated geoJSON and I utilized the flyto method with zooming and bearing for click-action effects. The site is mostly javascript with some HTML/CSS and is hosted on github pages.
 
 ### Feature Backlog:
  * add logos
  * include road trip as a separate experience
- * change mapping style depending on the marker location to highlight interesting geographic features
+ * change mapping style depending on the marker location to highlight interesting geographic features (like the extinct volcano across from the farm in California)
