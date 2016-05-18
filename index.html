@@ -17,7 +17,7 @@
 
     <div id='map' style='width: 100%; height: 89vh;'></div>
     <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoia2VpdGhoZW5yeSIsImEiOiJjaWpleHg0OXcwMDBxdTRtNXh2bzJ1M2RuIn0.pRRgOiRIeWX5MeHFz8Be3g';
+      mapboxgl.accessToken = 'pk.eyJ1Ijoia2VpdGhoZW5yeSIsImEiOiJjaWpleHg0OXcwMDBxdTRtNXh2bzJ1M2RuIn0.pRRgOiRIeWX5MeHFz8Be3g';
 
       var map = new mapboxgl.Map({
           container: 'map',
@@ -129,7 +129,6 @@
               }
           });
 
-
           map.addLayer({
               "id": "markers",
               "type": "symbol",
@@ -147,127 +146,95 @@
 
       map.addControl(new  mapboxgl.Navigation())
 
-    map.on('click', function (e) {
-      var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
-      if (!features.length) {
+      map.on('click', function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
+        if (!features.length) {
           return;
-      }
+        }
 
-      var feature = features[0];
-      console.log(feature.geometry.coordinates[0])
-
-      // Populate the popup and set its coordinates
-      // based on the feature found.
+        var feature = features[0];
 
         var popup = new mapboxgl.Popup()
         .setLngLat(feature.geometry.coordinates)
         .setHTML(feature.properties.description)
         .addTo(map);
 
+        console.log(feature.properties)
+        var fly = function(){
+          // 1st conditional is to to see if the market selected is Yahoo.  If yes, bearing is set to 30 to aline nicely with Manhattan's grid system
+          if(feature.properties.title === "Yahoo" || feature.properties.title === "MediaMath"){
+            markerFly(feature.geometry.coordinates, 15.5, 0.4, 30)
 
-      var fly = function(){
-        // 1st conditional is to to see if the market selected is Yahoo.  If yes, bearing is set to 30 to aline nicely with Manhattan's grid system
-        if(feature.geometry.coordinates[0] === -73.98536682128906 && feature.geometry.coordinates[1] === 40.75401921961654){
-          map.flyTo({
-            center: feature.geometry.coordinates,
-            zoom: 15.5,
-            speed: 0.4,
-            bearing: 30
-          })
+            // 2nd conditional is looking for Hofstra, adds bearing to align with the turnpike
+          } else if (feature.properties.title === "Hofstra U") {
+              markerFly(feature.geometry.coordinates, 16.5, 0.4, -25)
+              } else {
+                console.log("else" + feature.geometry.coordinates[0])
+                markerFly(feature.geometry.coordinates, 14.5, 0.4, 0)
+                }
+        }
+        fly()
+      });
 
-          // 2nd conditional is looking for Hofstra, adds bearing to align with the turnpike
-        } else if (feature.geometry.coordinates[0] === -73.59603881835938 && feature.geometry.coordinates[1] === 40.71551718935035) {
-          map.flyTo({
-            center: feature.geometry.coordinates,
-            zoom: 16.5,
-            speed: 0.4,
-            bearing: -25
-          })
-        } else {
-          map.flyTo({
-            center: feature.geometry.coordinates,
-            zoom: 14.5,
-            speed: 0.4
-          })
-      }
-    }
-    fly()
-
-    var next = function(){
-      console.log(map.markers)
-    }
-
-  })
-
-
+    // conencted to East Coast Zoom button to show from DC to NYC
     var eastCoastZoom = function(){
-      map.flyTo({
-        center: [-75.237519, 40.000987],
-        zoom: 6.94,
-        bearing: 0
-      })
+      markerFly([-75.237519, 40.000987], 6.94, .5, 0)
     };
 
+    // function connected to US Zoom button
     var usZoom = function(){
-      map.flyTo({
-        center: [-99.046506, 37.477170],
-        zoom: 3.8,
-        bearing: 0
-      })
+      markerFly([-99.046506, 37.477170], 3.8, .5, 0)
     }
 
     // function to guide a user chronogically through the places I've lived
     var tour = function(){
       //to shawnee
-        tourFly([-74.777883, 39.854799], 16.5, 0.4, 0)
+        markerFly([-74.777883, 39.854799], 16.5, 0.4, 0)
 
       //to hofstra
       setTimeout(function() {
-        tourFly([-73.596210, 40.715599], 16.5, 0.4, -25)
+        markerFly([-73.596210, 40.715599], 16.5, 0.4, -25)
       },10550)
 
       // to cali
       setTimeout(function() {
-        tourFly([-121.898533, 39.181551])
+        markerFly([-121.898533, 39.181551], 16.5, 0.4, 0)
       },25000);
 
       //to Yahoo
       setTimeout(function() {
-        tourFly([-73.985126, 40.753794], 16.5, 0.4, 30)
+        markerFly([-73.985126, 40.753794], 16.5, 0.4, 30)
       },55000);
 
       // to MediaMath
       setTimeout(function() {
-        tourFly([-73.986601, 40.754421], 16.5, 0.1, 30)
+        markerFly([-73.986601, 40.754421], 16.5, 0.1, 30)
       },80000);
 
       //to Socrata
       setTimeout(function() {
-        tourFly([-77.038832, 38.905287])
+        markerFly([-77.038832, 38.905287], 16.5, 0.4, 0)
       },80500);
 
       //to general Assembly
       setTimeout(function() {
-        tourFly([-77.034117, 38.904839], 16.5, 0.4, 0)
+        markerFly([-77.034117, 38.904839], 16.5, 0.4, 0)
       },99000);
 
       //to Mapbox
       setTimeout(function() {
-        tourFly([-77.032558, 38.913184], 16.5, 0.4, 0)
+        markerFly([-77.032558, 38.913184], 16.5, 0.4, 0)
       },100500);
-    }
+    };
 
-    var tourFly = function(coordinates, zoomNum, speedNum, bearingNum){
+    var markerFly = function(coordinates, zoomNum, speedNum, bearingNum){
       map.flyTo({
         center: coordinates,
         zoom: zoomNum,
         speed: speedNum,
         bearing: bearingNum
       })
-    }
-
-
+    };
     </script>
-
   </body>
 </html>
