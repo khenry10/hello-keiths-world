@@ -11,7 +11,7 @@
     <h1> Hello Keith's World </h1>
 
     <div id='map' style='width: 100%; height: 600px;'></div>
-    <button onclick="fly()" id="fly">Fly</button>
+    <button onclick="fly()" id="fly">Fly</button><button onclick="zoomOut()">Zoom Out</button>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoia2VpdGhoZW5yeSIsImEiOiJjaWpleHg0OXcwMDBxdTRtNXh2bzJ1M2RuIn0.pRRgOiRIeWX5MeHFz8Be3g';
 
@@ -138,32 +138,35 @@
 
       var fly = function(){
         console.log("I'm Flyingggg")
-        map.flyTo({
-          center: feature.geometry.coordinates,
-          zoom: 16.5,
-          speed: 0.5
-        })
-      }
 
-      fly()
-    });
-
-    click = []
-    var fly = function(){
-      click++
-      console.log(click)
-      if(click === 1){
-        map.flyTo({
-          center: [-74.777883,39.854799],
-          zoom: 20
-        })
-      } else if (click ===2) {
-        map.flyTo({
-          center: [-74.777883,39.854799],
-          zoom: 20
-        })
+        if(feature.geometry.coordinates[0] === -73.98536682128906 && feature.geometry.coordinates[1] === 40.75401921961654){
+          console.log(feature.geometry.coordinates + " === [-73.98536682128906, 40.75401921961654]" )
+          map.flyTo({
+            center: feature.geometry.coordinates,
+            zoom: 16.5,
+            speed: 0.4,
+            bearing: 30
+          })
+        } else {
+          console.log(feature.geometry.coordinates[0] + " === [-73.98536682128906, 40.75401921961654]")
+          map.flyTo({
+            center: feature.geometry.coordinates,
+            zoom: 16.5,
+            speed: 0.4
+          })
       }
     }
+    fly()
+  })
+
+
+    var zoomOut = function(){
+      map.flyTo({
+        center: [-75.237519, 40.000987],
+        zoom: 6.94,
+        bearing: 360
+      })
+    };
 
     </script>
 
