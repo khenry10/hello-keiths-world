@@ -93,7 +93,7 @@
                       },
                       "properties": {
                           "title": "MediaMath",
-                          "description": "<div class=\"marker-title\">MediaMath</div><p><li> October 2011 - October 2014</p>",
+                          "description": "<div class=\"marker-title\"><b>MediaMath</b></div><p><li> October 2011 - October 2014</p><p> 100th hire and left as the company was hitting 500.  Had a bunch of differente roles and got exposure to all sides of the business.</p><p> Did a lot of favors which made me a go-to guy for the COO, he put me on Special projects knowing I had chips to cash in and would ultimately get the job done.</p><p> Ultimately became a Product Manager, designing Private Exchanges, a $20 million business line.</p>",
                           "marker-symbol": "marker"
 
                       }
@@ -121,13 +121,12 @@
 
     map.on('click', function (e) {
       var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
-      console.log(features[0].geometry.coordinates)
-
       if (!features.length) {
           return;
       }
 
       var feature = features[0];
+      console.log(feature.geometry.coordinates)
 
       // Populate the popup and set its coordinates
       // based on the feature found.
@@ -137,18 +136,24 @@
           .addTo(map);
 
       var fly = function(){
-        console.log("I'm Flyingggg")
-
+        // 1st conditional is to to see if the market selected is Yahoo.  If yes, bearing is set to 30 to aline nicely with Manhattan's grid system
         if(feature.geometry.coordinates[0] === -73.98536682128906 && feature.geometry.coordinates[1] === 40.75401921961654){
-          console.log(feature.geometry.coordinates + " === [-73.98536682128906, 40.75401921961654]" )
           map.flyTo({
             center: feature.geometry.coordinates,
             zoom: 16.5,
             speed: 0.4,
             bearing: 30
           })
+
+          // 2nd conditional is looking for Hofstra, adds bearing to align with the turnpike
+        } else if (feature.geometry.coordinates[0] === -73.59603881835938 && feature.geometry.coordinates[1] === 40.71551718935035) {
+          map.flyTo({
+            center: feature.geometry.coordinates,
+            zoom: 16.5,
+            speed: 0.4,
+            bearing: -25
+          })
         } else {
-          console.log(feature.geometry.coordinates[0] + " === [-73.98536682128906, 40.75401921961654]")
           map.flyTo({
             center: feature.geometry.coordinates,
             zoom: 16.5,
@@ -164,7 +169,7 @@
       map.flyTo({
         center: [-75.237519, 40.000987],
         zoom: 6.94,
-        bearing: 360
+        bearing: 0
       })
     };
 
