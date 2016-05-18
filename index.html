@@ -216,91 +216,54 @@
       })
     }
 
+    // function to guide a user chronogically through the places I've lived
     var tour = function(){
       //to shawnee
-      console.log("to shawnee.....")
-      map.flyTo({
-        center: [-74.777883, 39.854799],
-        zoom: 14.5,
-        speed: 0.4
-      })
+        tourFly([-74.777883, 39.854799], 16.5, 0.4, 0)
 
       //to hofstra
       setTimeout(function() {
-        console.log("to hofstra...")
-        map.flyTo({
-          center: [-73.596210, 40.715599],
-          zoom: 16.5,
-          speed: 0.4,
-          bearing: -25
-        })
-    },10550)
+        tourFly([-73.596210, 40.715599], 16.5, 0.4, -25)
+      },10550)
 
-    // to cali
-    setTimeout(function() {
-      console.log("to cali.....")
+      // to cali
+      setTimeout(function() {
+        tourFly([-121.898533, 39.181551])
+      },25000);
+
+      //to Yahoo
+      setTimeout(function() {
+        tourFly([-73.985126, 40.753794], 16.5, 0.4, 30)
+      },55000);
+
+      // to MediaMath
+      setTimeout(function() {
+        tourFly([-73.986601, 40.754421], 16.5, 0.1, 30)
+      },80000);
+
+      //to Socrata
+      setTimeout(function() {
+        tourFly([-77.038832, 38.905287])
+      },80500);
+
+      //to general Assembly
+      setTimeout(function() {
+        tourFly([-77.034117, 38.904839], 16.5, 0.4, 0)
+      },99000);
+
+      //to Mapbox
+      setTimeout(function() {
+        tourFly([-77.032558, 38.913184], 16.5, 0.4, 0)
+      },100500);
+    }
+
+    var tourFly = function(coordinates, zoomNum, speedNum, bearingNum){
       map.flyTo({
-        center: [-121.898533, 39.181551],
-        zoom: 16.5,
-        speed: 0.3,
-        bearing: 0
+        center: coordinates,
+        zoom: zoomNum,
+        speed: speedNum,
+        bearing: bearingNum
       })
-  },25000);
-
-//to Yahoo
-  setTimeout(function() {
-    console.log("to yahoo.....")
-    map.flyTo({
-      center: [-73.985126, 40.753794],
-      zoom: 16.5,
-      speed: 0.4,
-      bearing: 30
-    })
-},60000);
-
-// to MediaMath
-setTimeout(function() {
-  console.log("to MediaMath.....")
-  map.flyTo({
-    center: [-73.986601, 40.754421],
-    zoom: 16.5,
-    speed: 0.1,
-    bearing: 30
-  })
-},80000);
-
-//to Socrata
-setTimeout(function() {
-  console.log("to socrata.....")
-  map.flyTo({
-    center: [-77.038832, 38.905287],
-    zoom: 16.5,
-    speed: 0.4,
-    bearing: 0
-  })
-},90000);
-
-//to general Assembly
-setTimeout(function() {
-  console.log("to GA.....")
-  map.flyTo({
-    center: [-77.034117, 38.904839],
-    zoom: 16.5,
-    speed: 0.4,
-    bearing: 0
-  })
-},100000);
-
-//to Mapbox
-setTimeout(function() {
-  console.log("to Mapbox....")
-  map.flyTo({
-    center: [-77.032558, 38.913184],
-    zoom: 16.5,
-    speed: 0.4,
-    bearing: 0
-  })
-},150000);
     }
 
 
