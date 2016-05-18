@@ -5,6 +5,7 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
   <link rel="stylesheet" href="style.css" >
+  <link rel="icon" href="images/favicon.png">
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 </head>
   <body>
@@ -19,6 +20,7 @@
     <script>
       mapboxgl.accessToken = 'pk.eyJ1Ijoia2VpdGhoZW5yeSIsImEiOiJjaWpleHg0OXcwMDBxdTRtNXh2bzJ1M2RuIn0.pRRgOiRIeWX5MeHFz8Be3g';
 
+      //instatiates the map, with the starting center coordaintes and zoom
       var map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v8',
@@ -26,10 +28,10 @@
           zoom: 3.8
       });
 
+      //geoJSON markers
       map.on('load', function () {
           map.addSource("markers", {
               "type": "geojson",
-
               "data": {
                   "type": "FeatureCollection",
                   "features": [{
@@ -40,7 +42,7 @@
                       },
                       "properties": {
                           "title": "Socrata",
-                          "description": "<div class=\"marker-title\">Socrata - leader in the open data space, In-Q-Tel funded start-up building a platform to help government and government agencies publish data. </div><p><li> October 2014 - February 2016</p>",
+                          "description": "<div class=\"marker-title\"><b>Socrata</b> - leader in the open data space, In-Q-Tel funded start-up building a platform to help government and government agencies publish data. </div><p><li> October 2014 - February 2016</p><p> Loved the mission of making government data more broadly accessible to everyone.</b>  Had a range of Public Sector customers, from Montgomery County to NASA.</p><p> Still felt the Developers were doing all the fun stuff, so I took the Part-time Back End Web Dev course at General Assembly.</p><p>  I loved it but it knew I had to dedicate a whole lot more time to get where I wanted to be. </p>",
                           "marker-symbol": "marker"
                       }
                   }, {
@@ -51,7 +53,7 @@
                       },
                       "properties": {
                           "title": "General Assembly",
-                          "description": "<div class=\"marker-title\">General Assembly's Web Dev Immersive</div><p><li> February 2016 - April 2016  </p>",
+                          "description": "<div class=\"marker-title\"><b>General Assembly's Web Dev Immersive</b></div><p><li> February 2016 - April 2016 </p><p> An intense full time 12-week course.  Learned Ruby, RoR, JavaScript, OOP, libraries/frameworks like jQuery, Anuglar, Express.</p><p>  It was challenging and rewarding.  The best payoffs always came after overcoming a hard struggle, which is why I rarely asked for Instructor help. </p><p> I approach coding the same way as when going for a heavy lift.  I tell my spotter 'let me struggle, don't touch the bar. You'll know when I need help'.</p>",
                           "marker-symbol": "marker"
                       }
                   }, {
@@ -63,7 +65,7 @@
                       },
                       "properties": {
                           "title": "Yahoo",
-                          "description": "<div class=\"marker-title\">Yahoo Inc.</div><p><li> January 2010 - October 2011</p><p> After the Fall Harvest ended",
+                          "description": "<div class=\"marker-title\"><b>Yahoo Inc.</b></div><p><li> January 2010 - October 2011</p><p> After the Fall Harvest ended I came back East.</p><p>  Utlimately I got job offers at Yahoo and Merril Lynch.  Wall Street seemed lame compared to what was happening in Tech, so I became a Yahoo never looked back!</p><p> I supported our Canadian business and worked with the top ad agencies in Toronto, who represented Fortune 500 brands.</p><p> Was turned off by the bureaucracy and limitations of what I could work on. </p><p> I was so starved to be more impactful that I would be the one who emailed when the CEO would say during all-hands meetings 'email me directly'.  He responded too :D </p>",
                           "marker-symbol": "marker"
                       }
                   }, {
@@ -74,7 +76,7 @@
                       },
                       "properties": {
                           "title": "Shawnee HS",
-                          "description": "<div class=\"marker-title\">Shawnee High School</div><p><li> Graduated June 2005 </p>",
+                          "description": "<div class=\"marker-title\"><b>Shawnee High School</b></div><p><li> Graduated June 2005 </p><p> All-American lacrosse player my Junior year.  No judgement on being a lacrosse player please!  </p><p>Typically the first thing people say after I tell them is 'You don't seem like a lacrosse player'.</p><p>  I was in a lot of honors classes so I knew everyone and was friends with everyone.</p>",
                           "marker-symbol": "marker"
                       }
                   }, {
@@ -85,7 +87,7 @@
                       },
                       "properties": {
                           "title": "Hofstra U",
-                          "description": "<div class=\"marker-title\">Hofstra University</div><p><li> Graduated May 2009 </p>",
+                          "description": "<div class=\"marker-title\"><b>Hofstra University</b></div><p><li> Graduated May 2009</li> </p><p> Spent the majority of time playing lacrosse and going class.  Majored in Finace.</p><p>  If I could go back I would major in Computer Science and minor Economics.</p>",
                           "marker-symbol": "marker"
                       }
                   }, {
@@ -97,7 +99,7 @@
                       },
                       "properties": {
                           "title": "Oak Acre Farms",
-                          "description": "<div class=\"marker-title\"><b>Mapbox</b></div><p><li> Fall 2009 </p><p> With the economy in the toilet, I decided to head West and help out on my buddies farm.</p><p> We did a little bit of everything from cleaning the orachards, picking fruit, boxing fruit on the assembly line, to any other odd jobs that needed to be done.</p><p> On weekends we would drive to San Fran to sell at a local farmers market and enjoy the city.</p>",
+                          "description": "<div class=\"marker-title\"><b>Mapbox</b></div><p><li> Fall 2009 </p><p> With the economy in the toilet, I decided to head West and help out on my buddies farm.</p><p> We did a little bit of everything from cleaning the orchards, picking fruit, boxing fruit on the assembly line, to any other odd jobs that needed to be done.</p><p> After work was over we would fish at the creek that bordered the property, shoot skeet, and sometiems head to the buffet at the casino.</p><p> On weekends we would drive to San Francisco to sell at a local farmers market and enjoy the city (mostly eat burritos and party).</p>",
                           "marker-symbol": "marker"
                           }
                       },  {
@@ -108,7 +110,7 @@
                       },
                       "properties": {
                           "title": "Mapbox",
-                          "description": "<div class=\"marker-title\"><b>Mapbox</b></div><p><li> Spring 2016 Harvest</p><p>  </p><p> </p><p> </p>",
+                          "description": "<div class=\"marker-title\"><b>Mapbox</b></div><p><li> Spring 2016</p><p> The Front End Developer on the Labs team is exactly the type of position I'm looking for.</p><p>  The best role for me is one where I can dive in, have a positive impact while working with a bunch of different teams, customers, and even partners. </p><p> </p>",
                           "marker-symbol": "marker"
                           }
                       }, {
@@ -116,11 +118,10 @@
                       "geometry": {
                           "type": "Point",
                           "coordinates": [-73.986601, 40.754421]
-
                       },
                       "properties": {
                           "title": "MediaMath",
-                          "description": "<div class=\"marker-title\"><b>MediaMath</b></div><p><li> October 2011 - October 2014</p><p> 100th hire and left as the company was hitting 500.  Had a bunch of differente roles and got exposure to all sides of the business.</p><p> Did a lot of favors which made me a go-to guy for the COO, he put me on Special projects knowing I had chips to cash in and would ultimately get the job done.</p><p> Ultimately became a Product Manager, designing Private Exchanges, a $20 million business line.</p>",
+                          "description": "<div class=\"marker-title\"><b>MediaMath</b></div><p><li> October 2011 - October 2014</p><p> This was the perfect job for me after feeling caged at Yahoo.  Had the freedom and automny to pursue a lot of passion projects, in addition to my day to day role.  </p><p> 100th hire and left as the company was hitting 500.  Had a bunch of differente roles and got exposure to all sides of the business.</p><p> Did a lot of favors which made me a go-to guy for the COO, he put me on Special projects knowing I had chips to cash in and would get the job done.</p><p> Ultimately became a Product Manager, designing Private Exchanges, a $20 million business line.</p><p> Loved being a Product Manager but felt hanidcapped not knowing the coding aspect.  I also wanted work on something that I was more passionate about.</p>",
                           "marker-symbol": "marker"
 
                       }
